@@ -20,18 +20,14 @@
 
 に進む前に、後で使用する追加の依存関係を追加します。
 
-- JSON ファイルからアプリケーション構成を読み取るための[Microsoft Extensions。](https://github.com/aspnet/Extensions)
+- [.Net 開発者シークレットストア](https://docs.microsoft.com/aspnet/core/security/app-secrets)からアプリケーション構成を読み取るための[usersecrets](https://github.com/aspnet/extensions) 。
 - [.Net 用 Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)は、ユーザーを認証し、アクセストークンを取得します。
 - Microsoft graph [.Net クライアントライブラリ](https://github.com/microsoftgraph/msgraph-sdk-dotnet)を使用して、microsoft graph を呼び出すことができます。
-- [Microsoft graph .NET SDK の認証プロバイダ](https://github.com/microsoftgraph/msgraph-sdk-dotnet-auth)。これにより、Graph クライアントライブラリは、API 呼び出しを行うときにトークンを自動的に要求できるようになります。
 
 CLI で次のコマンドを実行して、依存関係をインストールします。
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.FileExtensions --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.Json --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.Binder --version 3.1.0
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.0
 dotnet add package Microsoft.Identity.Client --version 4.7.1
 dotnet add package Microsoft.Graph --version 1.21.0
 ```

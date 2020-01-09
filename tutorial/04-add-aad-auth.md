@@ -2,22 +2,18 @@
 
 この演習では、Azure AD での認証をサポートするために、前の手順で作成したアプリケーションを拡張します。 これは、Microsoft Graph を呼び出すために必要な OAuth アクセストークンを取得するために必要です。 この手順では、 [.net 用 Microsoft 認証ライブラリ (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)をアプリケーションに統合します。
 
-新しいファイルを、 **appsettings**という名前の**graphtutorial**のディレクトリに作成します。 そのファイルに次のテキストを追加します。
+**Graphtutorial .csproj**を含むディレクトリで CLI を開き、次のコマンドを実行して、 [.net 開発シークレットストア](https://docs.microsoft.com/aspnet/core/security/app-secrets)を初期化します。
 
-```json
-{
-  "appId": "YOUR_APP_ID_HERE",
-  "scopes": [
-    "User.Read",
-    "Calendars.Read"
-  ]
-}
+```Shell
+dotnet user-secrets init
 ```
 
-を`YOUR_APP_ID_HERE` Azure ポータルで作成したアプリケーション ID に置き換えます。
+次に、以下のコマンドを使用して、アプリケーション ID と必要なスコープのリストをシークレットストアに追加します。 を`YOUR_APP_ID_HERE` Azure ポータルで作成したアプリケーション ID に置き換えます。
 
-> [!IMPORTANT]
-> Git などのソース管理を使用している場合は、この時点で、ソース管理からその**appsettings**ファイルを除外して、アプリ ID が誤ってリークしないようにすることをお勧めします。
+```Shell
+dotnet user-secrets set appId "YOUR_APP_ID_HERE"
+dotnet user-secrets set scopes "User.Read;Calendars.Read"
+```
 
 ## <a name="implement-sign-in"></a>サインインの実装
 
@@ -118,7 +114,6 @@
 
     ```csharp
     using Microsoft.Extensions.Configuration;
-    using System.IO;
     ```
 
 1. 次の関数を `Program` クラスに追加します。
@@ -127,14 +122,12 @@
     static IConfigurationRoot LoadAppSettings()
     {
         var appConfig = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false, true)
+            .AddUserSecrets<Program>()
             .Build();
 
         // Check for required settings
         if (string.IsNullOrEmpty(appConfig["appId"]) ||
-            // Make sure there's at least one value in the scopes array
-            string.IsNullOrEmpty(appConfig["scopes:0"]))
+            string.IsNullOrEmpty(appConfig["scopes"]))
         {
             return null;
         }
@@ -155,7 +148,8 @@
     }
 
     var appId = appConfig["appId"];
-    var scopes = appConfig.GetSection("scopes").Get<string[]>();
+    var scopesString = appConfig["scopes"];
+    var scopes = scopesString.Split(';');
 
     // Initialize the auth provider with values from appsettings.json
     var authProvider = new DeviceCodeAuthProvider(appId, scopes);
