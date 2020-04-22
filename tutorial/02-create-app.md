@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-まず、 [.Net コア CLI](/dotnet/core/tools/?tabs=netcore2x)を使用して、新しい .net コアコンソールプロジェクトを作成します。
+まず、 [.Net コア CLI](/dotnet/core/tools/)を使用して、新しい .net コアコンソールプロジェクトを作成します。
 
 1. プロジェクトを作成するディレクトリで、コマンドラインインターフェイス (CLI) を開きます。 次のコマンドを実行します。
 
@@ -27,9 +27,9 @@
 CLI で次のコマンドを実行して、依存関係をインストールします。
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.0
-dotnet add package Microsoft.Identity.Client --version 4.7.1
-dotnet add package Microsoft.Graph --version 1.21.0
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.2
+dotnet add package Microsoft.Identity.Client --version 4.10.0
+dotnet add package Microsoft.Graph --version 3.0.1
 ```
 
 ## <a name="design-the-app"></a>アプリを設計する
@@ -38,6 +38,56 @@ dotnet add package Microsoft.Graph --version 1.21.0
 
 テキストエディター ( [Visual Studio Code](https://code.visualstudio.com/)など) で**Program.cs**を開き、その内容全体を次のコードで置き換えます。
 
-[!code-csharp[](../demos/01-create-app/GraphTutorial/Program.cs)]
+```csharp
+using Microsoft.Extensions.Configuration;
+using System;
+
+namespace GraphTutorial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(".NET Core Graph Tutorial\n");
+
+            int choice = -1;
+
+            while (choice != 0) {
+                Console.WriteLine("Please choose one of the following options:");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("1. Display access token");
+                Console.WriteLine("2. List calendar events");
+
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch (System.FormatException)
+                {
+                    // Set to invalid value
+                    choice = -1;
+                }
+
+                switch(choice)
+                {
+                    case 0:
+                        // Exit the program
+                        Console.WriteLine("Goodbye...");
+                        break;
+                    case 1:
+                        // Display access token
+                        break;
+                    case 2:
+                        // List the calendar
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice! Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+}
+```
 
 これは基本的なメニューを実装し、コマンドラインからユーザーの選択を読み取ります。
