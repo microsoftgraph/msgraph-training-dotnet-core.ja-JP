@@ -7,7 +7,7 @@
 
 ## <a name="prerequisites"></a>前提条件
 
-このチュートリアルを開始する前に、開発用のコンピューターに[.Net CORE SDK](https://dotnet.microsoft.com/download)をインストールしておく必要があります。 SDK または Maven を持っていない場合は、「ダウンロードオプション」の前のリンクにアクセスしてください。
+このチュートリアルを開始する前に、開発用のコンピューターに [.Net CORE SDK](https://dotnet.microsoft.com/download) をインストールしておく必要があります。 SDK または Maven を持っていない場合は、「ダウンロードオプション」の前のリンクにアクセスしてください。
 
 また、Outlook.com 上のメールボックスを持つ個人の Microsoft アカウント、または Microsoft 職場または学校のアカウントを所有している必要があります。 Microsoft アカウントを持っていない場合は、無料のアカウントを取得するためのオプションがいくつかあります。
 
@@ -15,7 +15,7 @@
 - [Office 365 開発者プログラムにサインアップ](https://developer.microsoft.com/office/dev-program)して、無料の office 365 サブスクリプションを取得することができます。
 
 > [!NOTE]
-> このチュートリアルは、.NET Core SDK version 3.1.200 を使用して作成されています。 このガイドの手順は、他のバージョンでは動作しますが、テストされていません。
+> このチュートリアルは、.NET Core SDK version 3.1.402 を使用して作成されています。 このガイドの手順は、他のバージョンでは動作しますが、テストされていません。
 
 ## <a name="feedback"></a>フィードバック
 

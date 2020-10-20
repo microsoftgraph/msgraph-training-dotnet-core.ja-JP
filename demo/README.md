@@ -4,10 +4,10 @@
 
 このフォルダーで完了したプロジェクトを実行するには、次のものが必要です。
 
-- 開発用コンピューターにインストールされている[.Net コア SDK](https://dotnet.microsoft.com/download) 。 (**注:** このチュートリアルは、.NET Core SDK バージョン2.2.401 を使用して作成されています。 このガイドの手順は、他のバージョンでは動作しますが、テストされていません。)
+- 開発用コンピューターにインストールされている [.Net コア SDK](https://dotnet.microsoft.com/download) 。 (**注:** このチュートリアルは、.NET Core SDK バージョン3.1.402 を使用して作成されています。 このガイドの手順は、他のバージョンでは動作しますが、テストされていません。)
 - Microsoft 職場または学校のアカウント。
 
-Microsoft アカウントを持っていない場合は、 [office 365 開発者プログラムにサインアップ](https://developer.microsoft.com/office/dev-program)して、無料の office 365 サブスクリプションを取得することができます。
+Microsoft アカウントを持っていない場合は、 [office 365 開発者プログラムにサインアップ](https://developer.microsoft.com/office/dev-program) して、無料の office 365 サブスクリプションを取得することができます。
 
 ## <a name="register-a-web-application-with-the-azure-active-directory-admin-center"></a>Web アプリケーションを Azure Active Directory 管理センターに登録する
 
@@ -29,11 +29,11 @@ Microsoft アカウントを持っていない場合は、 [office 365 開発者
 
     ![新しいアプリ登録のアプリケーション ID のスクリーンショット](/tutorial/images/aad-application-id.png)
 
-1. [**リダイレクト URI を追加する**] リンクを選択します。 [**リダイレクト uri** ] ページで、[**パブリッククライアント (モバイル、デスクトップ)] セクションの推奨されるリダイレクト uri**を見つけます。 `https://login.microsoftonline.com/common/oauth2/nativeclient` URI を選択します。
+1. [ **リダイレクト URI を追加する** ] リンクを選択します。 [ **リダイレクト uri** ] ページで、[ **パブリッククライアント (モバイル、デスクトップ)] セクションの推奨されるリダイレクト uri** を見つけます。 URI を選択し `https://login.microsoftonline.com/common/oauth2/nativeclient` ます。
 
     ![リダイレクト Uri ページのスクリーンショット](/tutorial/images/aad-redirect-uris.png)
 
-1. [**既定のクライアントの種類**] セクションを探し、[アプリケーションを**パブリッククライアントとして扱う**] を [**はい**] に変更して、[**保存**] を選択します。
+1. [ **既定のクライアントの種類** ] セクションを探し、[アプリケーションを **パブリッククライアントとして扱う** ] を [ **はい**] に変更して、[ **保存**] を選択します。
 
     ![[既定のクライアントの種類] セクションのスクリーンショット](/tutorial/images/aad-default-client-type.png)
 
@@ -45,7 +45,7 @@ Microsoft アカウントを持っていない場合は、 [office 365 開発者
     dotnet user-secrets init
     ```
 
-1. 次のコマンドを使用して、アプリケーション ID と必要なスコープのリストをシークレットストアに追加します。 を`YOUR_APP_ID_HERE` Azure ポータルで作成したアプリケーション ID に置き換えます。
+1. 次のコマンドを使用して、アプリケーション ID と必要なスコープのリストをシークレットストアに追加します。 を `YOUR_APP_ID_HERE` Azure ポータルで作成したアプリケーション ID に置き換えます。
 
     ```Shell
     dotnet user-secrets set appId "YOUR_APP_ID_HERE"
