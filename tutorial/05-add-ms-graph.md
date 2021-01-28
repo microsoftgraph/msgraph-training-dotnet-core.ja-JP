@@ -1,17 +1,18 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-この演習では、Microsoft Graph をアプリケーションに組み込みます。 このアプリケーションでは、microsoft [graph .Net クライアントライブラリ](https://github.com/microsoftgraph/msgraph-sdk-dotnet) を使用して microsoft graph への呼び出しを行います。
+この演習では、Microsoft Graph をアプリケーションに組み込む必要があります。 このアプリケーションでは [、Microsoft Graph .NET クライアント](https://github.com/microsoftgraph/msgraph-sdk-dotnet) ライブラリを使用して Microsoft Graph を呼び出します。
 
 ## <a name="get-user-details"></a>ユーザーの詳細情報を取得する
 
-1. **Graph**という名前の**graphtutorial**ディレクトリに新しいディレクトリを作成します。
-1. **GraphHelper.cs**という名前の**Graph**ディレクトリに新しいファイルを作成し、そのファイルに次のコードを追加します。
+1. Graph という名前の **GraphTu graphl ディレクトリに新** しいディレクトリを作成 **します**。
+1. GraphHelper.cs という名前の **Graph** ディレクトリに **新しいファイルを作成し、** そのファイルに次のコードを追加します。
 
     ```csharp
     using Microsoft.Graph;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TimeZoneConverter;
 
     namespace GraphTutorial
     {
@@ -46,38 +47,38 @@
     }
     ```
 
-1. ユーザーを取得して `Main` ユーザーの表示名を出力する呼び出しの直後に、次のコードを追加**します。/Program.cs。** `GetAccessToken`
+1. 呼び出しの直後に ./Program.cs に次のコードを追加して、ユーザーを取得し、ユーザーの表示名 `Main`  `GetAccessToken` を出力します。
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="GetUserSnippet":::
 
-アプリをすぐに実行する場合は、アプリにログインした後、名前によって歓迎されます。
+ここでアプリを実行すると、アプリにログインすると、名前で表示されます。
 
 ## <a name="get-a-calendar-view"></a>予定表ビューを取得する
 
-1. 次の関数をクラスに追加して、 `GraphHelper` ユーザーの予定表からイベントを取得します。
+1. 次の関数をクラスに `GraphHelper` 追加して、ユーザーの予定表からイベントを取得します。
 
     :::code language="csharp" source="../demo/GraphTutorial/Graph/GraphHelper.cs" id="GetEventsSnippet":::
 
 このコードの実行内容を考えましょう。
 
 - 呼び出される URL は `/me/calendarview` です。
-- `startDateTime`パラメーターとは、 `endDateTime` カレンダービューの開始と終了を定義します。
-- `Prefer: outlook.timezone`ヘッダーにより、 `start` イベントが `end` ユーザーのタイムゾーンで返されます。
-- 関数は、 `Top` 最大50イベントを要求します。
-- 関数は、 `Select` 各イベントに対して返されるフィールドを、アプリが実際に使用しているものだけに制限します。
-- 関数は、 `OrderBy` 開始日時で結果を並べ替えます。
+- パラメーター `startDateTime` は `endDateTime` 、カレンダー ビューの開始と終了を定義します。
+- ヘッダーにより、ユーザーのタイム ゾーンでイベントと `Prefer: outlook.timezone` `start` `end` イベントが返されます。
+- この `Top` 関数は、最大で 50 のイベントを要求します。
+- この `Select` 関数は、各イベントで返されるフィールドを、アプリが実際に使用するフィールドに制限します。
+- この `OrderBy` 関数は、結果を開始日時で並べ替える。
 
 ## <a name="display-the-results"></a>結果の表示
 
-1. 次の関数をクラスに追加して、 `Program` Microsoft Graph の [dateTimeTimeZone](/graph/api/resources/datetimetimezone?view=graph-rest-1.0) プロパティをユーザーフレンドリな形式に書式設定します。
+1. 次の関数をクラスに追加して、Microsoft Graph の dateTimeTimeZone プロパティをユーザー に使い分け可能な形式 `Program` に書式設定します。 [](/graph/api/resources/datetimetimezone?view=graph-rest-1.0)
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="FormatDateSnippet":::
 
-1. 次の関数をクラスに追加して、 `Program` ユーザーのイベントを取得し、コンソールに出力します。
+1. 次の関数をクラスに追加して、ユーザーのイベントを取得し、コンソール `Program` に出力します。
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="ListEventsSnippet":::
 
-1. 関数のコメントの直後に以下を追加し `// List the calendar` `Main` ます。
+1. 関数のコメントの直後に `// List the calendar` 次を追加 `Main` します。
 
     ```csharp
     ListCalendarEvents(
@@ -86,7 +87,7 @@
     );
     ```
 
-1. すべての変更を保存し、アプリを実行します。 ユーザーのイベントの一覧を表示するには、[ **今週の予定表を表示** する] オプションを選択します。
+1. すべての変更を保存し、アプリを実行します。 [今週 **の予定表を表示] オプションを選択** して、ユーザーのイベントの一覧を表示します。
 
     ```Shell
     Welcome Lynne Robbins!
