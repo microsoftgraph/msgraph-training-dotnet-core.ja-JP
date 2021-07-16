@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-まず、.NET Core CLI を使用して新しい [.NET Core コンソール プロジェクトを作成します](/dotnet/core/tools/)。
+まず、.NET Core CLI を使用して新しい .NET Core コンソール [プロジェクトを作成します](/dotnet/core/tools/)。
 
 1. プロジェクトを作成するディレクトリでコマンド ライン インターフェイス (CLI) を開きます。 次のコマンドを実行します。
 
@@ -8,7 +8,7 @@
     dotnet new console -o GraphTutorial
     ```
 
-1. プロジェクトが作成された後、現在のディレクトリを **GraphTu clil** ディレクトリに変更し、CLI で次のコマンドを実行して、プロジェクトが動作を確認します。
+1. プロジェクトが作成されると、現在のディレクトリを **GraphTutorial** ディレクトリに変更し、CLI で次のコマンドを実行して動作します。
 
     ```Shell
     dotnet run
@@ -16,34 +16,35 @@
 
     動作する場合、アプリは出力する必要があります `Hello World!` 。
 
-## <a name="install-dependencies"></a>依存関係をインストールする
+## <a name="install-dependencies"></a>依存関係のインストール
 
 次に進む前に、後で使用する依存関係を追加します。
 
-- [Microsoft.Extensions.Configuriation。.NET 開発シークレット](https://github.com/aspnet/extensions) ストアからアプリケーション構成を読 [み取る](https://docs.microsoft.com/aspnet/core/security/app-secrets)UserSecrets。
-- [ユーザーを認証し、アクセス](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) トークンを取得するための .NET 用 Microsoft 認証ライブラリ (MSAL)。
-- [Microsoft Graph の呼び出しを](https://github.com/microsoftgraph/msgraph-sdk-dotnet) 行う Microsoft Graph .NET クライアント ライブラリ。
-- Windows タイム ゾーン識別子を IANA 識別子に変換する[TimeZoneConverter。](https://github.com/mj1856/TimeZoneConverter)
+- [Microsoft.Extensions.Configを指定します。UserSecrets を](https://github.com/aspnet/extensions) 使用して、.NET 開発シークレット ストアから [アプリケーション構成を読み取る](https://docs.microsoft.com/aspnet/core/security/app-secrets)。
+- [Azure SDK クライアント ライブラリ for Azure Identity](https://github.com/Azure/azure-sdk-for-net) を使用して、ユーザーを認証し、アクセス トークンを取得します。
+- [Microsoft Graph .NET クライアント ライブラリを使用して](https://github.com/microsoftgraph/msgraph-sdk-dotnet)Microsoft クライアント ライブラリを呼び出Graph。
+- タイム ゾーン識別子を IANA 識別子Windows変換する[TimeZoneConverter。](https://github.com/mj1856/TimeZoneConverter)
 
-CLI で次のコマンドを実行して、依存関係をインストールします。
+依存関係をインストールするには、CLI で次のコマンドを実行します。
 
 ```Shell
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 5.0.0
-dotnet add package Microsoft.Identity.Client --version 4.25.0
-dotnet add package Microsoft.Graph --version 3.22.0
+dotnet add package Azure.Identity --version 1.4.0
+dotnet add package Microsoft.Graph --version 4.0.0
 dotnet add package TimeZoneConverter
 ```
 
 ## <a name="design-the-app"></a>アプリを設計する
 
-このセクションでは、コンソール ベースの簡単なメニューを作成します。
+このセクションでは、単純なコンソール ベースのメニューを作成します。
 
-テキスト エディター (Visual Studio [Code](https://code.visualstudio.com/)など) で **./Program.cs Visual Studio** を開き、その内容全体を次のコードに置き換えます。
+テキスト エディター (Visual Studio Code など) で **./Program.cs** を開き [、その内容全体](https://code.visualstudio.com/)を次のコードに置き換えます。
 
 ```csharp
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace GraphTutorial
 {
@@ -97,4 +98,4 @@ namespace GraphTutorial
 }
 ```
 
-これにより、基本的なメニューが実装され、コマンド ラインからユーザーの選択が読み取ります。
+これにより、基本的なメニューが実装され、コマンド ラインからユーザーの選択項目が読み取ります。
